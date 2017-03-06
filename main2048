@@ -1,0 +1,105 @@
+#include <iostream>
+
+using namespace std;
+
+#include "damierstat.h"
+#include "damierdyn.h"
+#define KEY_UP 72
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define KEY_DOWN 80
+
+int main(int argc, char *argv[])
+{
+
+    DamierDyn D2(4,4);
+    DamierDyn D3(4,4);
+    D2.Init(0);
+    D3.Init(0);
+    D2.Set(rand()%4,rand()%4, 2);
+    D2.Set(rand()%4,rand()%4, 2);
+    D2.Print();
+    char choice = 'w';
+    int i = 0;
+    while(choice=='w' || choice=='a' || choice=='s' || choice=='d'){
+        cout<<"\npress a button";
+        cin>>choice;
+        switch (choice) {
+        case 'w':
+            D3 = D2;
+            D2.moveUp(D2);
+            //D2.Print();
+            D2.sommeUp(D2);
+           // D2.Print();
+           if (D2.up1==true||D2.up2==true){
+                D2.setRandom(D2);
+                D2.up1 = false;
+                D2.up2 = false;
+            }
+           else cout<<"Le jeu et bloqué en haut";
+            D2.Print();
+            break;
+        case 'd':
+             D3 = D2;
+            D2.moveDroit(D2);
+            //D2.Print();
+            D2.sommeDroit(D2);
+            //D2.Print();
+           if (D2.droit1==true||D2.droit2==true){
+                D2.setRandom(D2);
+                D3 = D2;
+               D2.droit1 = false;
+               D2.droit2 = false;
+        }
+          else cout<<"Le jeu et bloqué en droite";
+            D2.Print();
+            break;
+
+        case 'a':
+             D3 = D2;
+            D2.moveGauche(D2);
+            //D2.Print();
+            D2.sommeGauche(D2);
+            //D2.Print();
+           if (D2.gauche1==true||D2.gauche2==true){
+                D2.setRandom(D2);
+                D3 = D2;
+               D2.gauche1 = false;
+               D2.gauche2 = false;
+        }
+          else cout<<"Le jeu et bloqué en gauche";
+            D2.Print();
+            break;
+
+        case 's':
+            D3 = D2;
+            D2.moveDown(D2);
+            //D2.Print();
+            D2.sommeDown(D2);
+            //D2.Print();
+           if (D2.down1==true||D2.down2==true){
+                D2.setRandom(D2);
+                D3 = D2;
+               D2.down1 = false;
+               D2.down2 = false;
+        }
+          else cout<<"Le jeu et bloqué en bas";
+            D2.Print();
+            //D2.PrintScore();
+            break;
+        case 'r':
+            D2 = D3;
+            D2.Print();
+            break;
+        case 'e':
+            D2.Init(0);
+            D2.Set(1,4, 2);
+            D2.Set(3,2, 2);
+            D2.Print();
+            D2.score = 0;
+            break;
+        default:
+            break;
+        }
+        cout << endl << "Le score est  " << D2.score << ", ";
+    }
