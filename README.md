@@ -1,2 +1,2 @@
 # S8-Cplusplus
-heyy Vincent
+usage du logiciel, problèmes rencontrés, fonctionnalité non implémentées...
